@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.WebApi", "Ordering
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AE2E5ABC-FA55-4997-AD97-78F5303CD48B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizSoft.Ordering.Core", "BizSoft.Ordering.Core\BizSoft.Ordering.Core.csproj", "{A9479758-A402-41E0-9B37-0F6FD36B41CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{AE2E5ABC-FA55-4997-AD97-78F5303CD48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE2E5ABC-FA55-4997-AD97-78F5303CD48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE2E5ABC-FA55-4997-AD97-78F5303CD48B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9479758-A402-41E0-9B37-0F6FD36B41CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9479758-A402-41E0-9B37-0F6FD36B41CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9479758-A402-41E0-9B37-0F6FD36B41CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9479758-A402-41E0-9B37-0F6FD36B41CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{8F58E06C-1122-4E43-9DB4-9F266D76C001} = {EB18D8C6-922F-4869-8E73-55C5EFAC5D6A}
 		{7C12CC0E-9DF6-4AF6-BA9F-0DB7906A1EE6} = {9D3F56E8-F85F-4BF3-A93C-44B291D9C1E0}
 		{63AD7CCE-6254-48DC-A9EF-246ED749B658} = {7C12CC0E-9DF6-4AF6-BA9F-0DB7906A1EE6}
+		{A9479758-A402-41E0-9B37-0F6FD36B41CA} = {7C12CC0E-9DF6-4AF6-BA9F-0DB7906A1EE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A688FB89-B5E4-4243-88F7-63862FBEFBD4}
