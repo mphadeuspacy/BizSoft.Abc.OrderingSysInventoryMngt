@@ -6,7 +6,7 @@ namespace BizSoft.Ordering.Core.SeedWork.Abstracts
     public interface IOrderRepository : IRepository<Order>
     {
         Order Create(Order order);
-        void Update(Order order);
-        Task<Order> GetByIdAsync(int orderId);
+        void Modify(Order order);
+        Task<Order> RetrieveByIdAsync(int orderId);
     }
 }
