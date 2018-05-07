@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BizSoft.Ordering.Core.Events;
 using BizSoft.Ordering.Core.SeedWork.Abstracts;
@@ -9,7 +8,7 @@ namespace BizSoft.Ordering.Core.Entities.Order
     public class Order : Entity, IEntityRoot
     {
         private readonly List<OrderItem.OrderItem> _orderItems;
-        private int _units;
+        private int? _buyerId;
 
         public IReadOnlyCollection<OrderItem.OrderItem> OrderItems => _orderItems;
         
@@ -27,6 +26,7 @@ namespace BizSoft.Ordering.Core.Entities.Order
         ) 
             : this()
         {
+            _buyerId = buyerId;
             SubscribeDomainEvent(new OrderStartedDomainEvent( this, userId));
         }
 

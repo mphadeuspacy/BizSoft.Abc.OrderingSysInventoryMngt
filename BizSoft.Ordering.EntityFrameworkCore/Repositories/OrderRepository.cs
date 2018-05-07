@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using BizSoft.Ordering.Core.Entities.Order;
 using BizSoft.Ordering.Core.SeedWork.Abstracts;
 
@@ -6,11 +7,17 @@ namespace BizSoft.Ordering.EntityFrameworkCore.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly OrderingDbContext _context;
-        public IDbContextPersister DbContextPersister { get; }
+        private readonly OrderingDbContext _orderingDbContext;
+        public IUnitOfWork UnitOfWork => _orderingDbContext;
+
+        public OrderRepository(OrderingDbContext orderingDbContext)
+        {
+            _orderingDbContext = orderingDbContext ?? throw new ArgumentNullException(nameof(orderingDbContext));
+        }
+
         public Order Create(Order order)
         {
-            throw new System.NotImplementedException();
+            return _orderingDbContext.Orders.Add(order).Entity;
         }
 
         public void Modify(Order order)

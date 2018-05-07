@@ -2,6 +2,6 @@
 {
     public interface IRepository<TEntity> where TEntity : IEntityRoot
     {
-        IDbContextPersister DbContextPersister { get; }
+        IUnitOfWork UnitOfWork { get; }
     }
 }

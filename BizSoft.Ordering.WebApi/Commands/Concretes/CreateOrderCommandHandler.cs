@@ -51,7 +51,7 @@ namespace Ordering.WebApi.Commands.Concretes
 
             _orderRepository.Create(order);
 
-            return await _orderRepository.DbContextPersister.CommitAsync(cancellationToken);
+            return await _orderRepository.UnitOfWork.CommitAsync(cancellationToken);
         }
     }
 }
