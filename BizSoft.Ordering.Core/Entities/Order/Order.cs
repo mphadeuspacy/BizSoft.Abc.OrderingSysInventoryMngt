@@ -12,7 +12,7 @@ namespace BizSoft.Ordering.Core.Entities.Order
 
         public IReadOnlyCollection<OrderItem.OrderItem> OrderItems => _orderItems;
         
-        public OrderStatus OrderStatus { get; private set; }
+        public OrderStatus.OrderStatus OrderStatus { get; private set; }
 
         protected Order()
         {

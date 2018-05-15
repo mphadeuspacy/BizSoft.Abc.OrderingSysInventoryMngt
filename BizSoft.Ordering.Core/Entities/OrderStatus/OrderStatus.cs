@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BizSoft.Ordering.Core.SeedWork.Concretes;
 
-namespace BizSoft.Ordering.Core.Entities.Order
+namespace BizSoft.Ordering.Core.Entities.OrderStatus
 {
     public class OrderStatus : Enumeration
     {

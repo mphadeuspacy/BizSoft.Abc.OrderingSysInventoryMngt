@@ -34,32 +34,32 @@ namespace BizSoft.Ordering.EntityFrameworkCore
     }
 
     //TODO: Uncomment & fix this
-    //public class OrderingDbContextDesignFactory : IDesignTimeDbContextFactory<OrderingDbContext>
-    //{
-    //    public OrderingDbContext CreateDbContext( string[] args )
-    //    {
-    //        var optionsBuilder = new DbContextOptionsBuilder<OrderingDbContext>()
-    //            .UseSqlServer( "Server=.;Initial Catalog=BizSoft.Services.OrderingDb;Integrated Security=true" );
+    public class OrderingDbContextDesignFactory : IDesignTimeDbContextFactory<OrderingDbContext>
+    {
+        public OrderingDbContext CreateDbContext( string[] args )
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<OrderingDbContext>()
+                .UseSqlServer( "Server=.;Initial Catalog=BizSoft.Services.OrderingDb;Integrated Security=true" );
 
-    //        return new OrderingDbContext( optionsBuilder.Options, new NoMediator() );
-    //    }
+            return new OrderingDbContext( optionsBuilder.Options, new NoMediator() );
+        }
 
-    //    internal class NoMediator : IMediator
-    //    {
-    //        public Task Publish<TNotification>( TNotification notification, CancellationToken cancellationToken = default( CancellationToken ) ) where TNotification : INotification
-    //        {
-    //            return Task.CompletedTask;
-    //        }
+        internal class NoMediator : IMediator
+        {
+            public Task Publish<TNotification>( TNotification notification, CancellationToken cancellationToken = default( CancellationToken ) ) where TNotification : INotification
+            {
+                return Task.CompletedTask;
+            }
 
-    //        public Task<TResponse> Send<TResponse>( IRequest<TResponse> request, CancellationToken cancellationToken = default( CancellationToken ) )
-    //        {
-    //            return Task.FromResult( default( TResponse ) );
-    //        }
+            public Task<TResponse> Send<TResponse>( IRequest<TResponse> request, CancellationToken cancellationToken = default( CancellationToken ) )
+            {
+                return Task.FromResult( default( TResponse ) );
+            }
 
-    //        public Task Send( IRequest request, CancellationToken cancellationToken = default( CancellationToken ) )
-    //        {
-    //            return Task.CompletedTask;
-    //        }
-    //    }
-    //}
+            public Task Send( IRequest request, CancellationToken cancellationToken = default( CancellationToken ) )
+            {
+                return Task.CompletedTask;
+            }
+        }
+    }
 }
