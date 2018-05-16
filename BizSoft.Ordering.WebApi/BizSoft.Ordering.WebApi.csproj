@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BizSoft.Ordering.Core\BizSoft.Ordering.Core.csproj" />
+    <ProjectReference Include="..\BizSoft.Ordering.EntityFrameworkCore\BizSoft.Ordering.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

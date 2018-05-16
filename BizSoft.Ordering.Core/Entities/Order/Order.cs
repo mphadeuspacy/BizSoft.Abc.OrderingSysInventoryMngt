@@ -5,11 +5,11 @@ using BizSoft.Ordering.Core.SeedWork.Abstracts;
 
 namespace BizSoft.Ordering.Core.Entities.Order
 {
-    public class Order : Entity, IEntityRoot
+    public class Order : Entity, IAggregateRoot
     {
-        private readonly List<OrderItem.OrderItem> _orderItems;
         private int? _buyerId;
 
+        private readonly List<OrderItem.OrderItem> _orderItems;
         public IReadOnlyCollection<OrderItem.OrderItem> OrderItems => _orderItems;
         
         public OrderStatus.OrderStatus OrderStatus { get; private set; }
@@ -26,7 +26,8 @@ namespace BizSoft.Ordering.Core.Entities.Order
         ) 
             : this()
         {
-            _buyerId = buyerId;
+            _buyerId = buyerId; 
+
             SubscribeDomainEvent(new OrderStartedDomainEvent( this, userId));
         }
 
