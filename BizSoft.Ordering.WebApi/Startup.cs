@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BizSoft.Ordering.Core.Entities.Order;
-using BizSoft.Ordering.Core.SeedWork.Abstracts;
+using Autofac;
 using BizSoft.Ordering.EntityFrameworkCore;
-using BizSoft.Ordering.EntityFrameworkCore.Repositories;
+using BizSoft.Ordering.WebApi.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Ordering.WebApi
 {
@@ -32,12 +27,32 @@ namespace Ordering.WebApi
             services
                 .AddEntityFrameworkSqlServer()
                 .AddDbContext<OrderingDbContext>
-                (options => { options.UseSqlServer(Configuration["ConnectionString"]); }
+                (
+                    options =>
+                    {
+                        options.UseSqlServer
+                        (
+                            Configuration["ConnectionString"],
+                            sqlServerOptionsAction: sqlOptions =>
+                            {
+                                sqlOptions.EnableRetryOnFailure
+                                (
+                                    maxRetryCount: 5,
+                                    maxRetryDelay: TimeSpan.FromSeconds(20),
+                                    errorNumbersToAdd: null
+                                );
+                            });
+                    }
                 );
 
             services.AddMvc();
-            // Register custom application dependencies.
-            services.AddScoped<IRepository<Order>, OrderRepository>();
+
+            // Autofac config
+            var container = new ContainerBuilder();
+
+            container.Populate( services );
+
+            container.RegisterModule( new ApplicationModule( Configuration["ConnectionString"] ) );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
