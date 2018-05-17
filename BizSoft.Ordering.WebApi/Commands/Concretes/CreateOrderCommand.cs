@@ -14,6 +14,15 @@ namespace Ordering.WebApi.Commands.Concretes
         [DataMember] private readonly IList<OrderItemDto> _orderItems;
         [DataMember] public string UserId { get; private set; }
         [DataMember] public IEnumerable<OrderItemDto> OrderItems => _orderItems;
+        public string Street { get; set; }
+        [DataMember]
+        public string City { get; set; }
+        [DataMember]
+        public string State { get; set; }
+        [DataMember]
+        public string Country { get; set; }
+        [DataMember]
+        public string ZipCode { get; set; }
 
         public CreateOrderCommand()
         {
@@ -23,11 +32,22 @@ namespace Ordering.WebApi.Commands.Concretes
         public CreateOrderCommand
         (
             IList<BasketItem> basketItems,
-            string userId
-        ) : this()
+            string userId,
+            string city, 
+            string street, 
+            string state, 
+            string country, 
+            string zipcode
+        ) 
+            : this()
         {
             _orderItems = basketItems.ToOrderItemsDto().ToList();
             UserId = userId;
+            City = city;
+            Street = street;
+            State = state;
+            Country = country;
+            ZipCode = zipcode;
         }
     }
 

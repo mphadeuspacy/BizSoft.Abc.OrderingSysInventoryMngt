@@ -30,6 +30,12 @@ namespace BizSoft.Ordering.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration( new OrderEntityTypeConfiguration() );
+
+            modelBuilder.ApplyConfiguration( new OrderItemEntityTypeConfiguration() );
+
+            modelBuilder.ApplyConfiguration( new OrderStatusEntityTypeConfiguration() );
+
+            modelBuilder.ApplyConfiguration( new BuyerEntityTypeConfiguration() );
         }
 
         public async Task<bool> CommitAsync(CancellationToken cancellationToken = default(CancellationToken))

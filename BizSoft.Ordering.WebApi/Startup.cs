@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using BizSoft.Ordering.EntityFrameworkCore;
 using BizSoft.Ordering.WebApi.Modules;
 using Microsoft.AspNetCore.Builder;
@@ -41,7 +42,8 @@ namespace Ordering.WebApi
                                     maxRetryDelay: TimeSpan.FromSeconds(20),
                                     errorNumbersToAdd: null
                                 );
-                            });
+                            }
+                        );
                     }
                 );
 

@@ -6,3 +6,10 @@ services:
     build:
       context: .
       dockerfile: Ordering.WebApi\Dockerfile
+
+  mvccore:
+    image: ${DOCKER_REGISTRY}mvccore
+    build:
+      context: .
+      dockerfile: ..\MvcCore\Dockerfile
+

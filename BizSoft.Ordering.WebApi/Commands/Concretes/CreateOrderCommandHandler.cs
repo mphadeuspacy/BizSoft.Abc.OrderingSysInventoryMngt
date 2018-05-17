@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BizSoft.Ordering.Core.AggregateEntities.Address;
 using BizSoft.Ordering.Core.Entities.Order;
 using BizSoft.Ordering.Core.SeedWork.Abstracts;
 using BizSoft.Ordering.Core.Services.Abstracts;
@@ -34,7 +35,15 @@ namespace Ordering.WebApi.Commands.Concretes
             var order = new Order
             ( 
                 userId : createOrderCommand.UserId, 
-                buyerId: null
+                buyerId: null,
+                address: new Address
+                (
+                    street: createOrderCommand.Street, 
+                    city: createOrderCommand.City, 
+                    state:  createOrderCommand.State, 
+                    country:  createOrderCommand.Country, 
+                    zipcode: createOrderCommand.ZipCode
+                )
             );
 
             foreach (var orderItemDto in createOrderCommand.OrderItems)
