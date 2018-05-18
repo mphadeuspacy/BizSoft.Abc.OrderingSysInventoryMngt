@@ -12,8 +12,14 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.1" />
+    <PackageReference Include="Dapper" Version="1.50.4" />
     <PackageReference Include="MediatR" Version="4.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.2" />
+    <PackageReference Include="Polly" Version="6.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BizSoft.EventBus\BizSoft.EventBus.csproj" />
+    <ProjectReference Include="..\..\BizSoft.IntegrationEventLogEf\BizSoft.IntegrationEventLogEf.csproj" />
+    <ProjectReference Include="..\..\BizSoft.WebHost.Customization\BizSoft.WebHost.Customization.csproj" />
     <ProjectReference Include="..\BizSoft.Ordering.Core\BizSoft.Ordering.Core.csproj" />
     <ProjectReference Include="..\BizSoft.Ordering.EntityFrameworkCore\BizSoft.Ordering.EntityFrameworkCore.csproj" />
   </ItemGroup>

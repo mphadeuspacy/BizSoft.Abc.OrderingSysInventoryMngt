@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Ordering.WebApi.Commands.Concretes;
+using BizSoft.Ordering.WebApi.Models;
 using Ordering.WebApi.Models;
 
-namespace Ordering.WebApi.Extensions
+namespace BizSoft.Ordering.WebApi.Extensions
 {
     public static class BasketItemExtensions
     {
@@ -14,7 +14,7 @@ namespace Ordering.WebApi.Extensions
 
         public static OrderItemDto ToOrderItemDto( this BasketItem item )
         {
-            return new OrderItemDto()
+            return new OrderItemDto
             {
                 ProductId = int.TryParse( item.ProductId, out var id ) ? id : -1,
                 ProductName = item.ProductName,

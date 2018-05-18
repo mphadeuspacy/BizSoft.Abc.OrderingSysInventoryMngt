@@ -54,6 +54,11 @@ namespace BizSoft.Ordering.Core.Entities.Order
                 _orderItems.Add(new OrderItem.OrderItem(productId, productName, price, imageUri, numberOfItems));
             }
         }
+
+        public decimal GetTotal()
+        {
+            return _orderItems.Sum( o => o.GetNumberOfItems() * o.GetPrice() );
+        }
     }
 }
 

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using BizSoft.Ordering.WebApi.Extensions;
+using BizSoft.Ordering.WebApi.Models;
 using MediatR;
 using Ordering.WebApi.Commands.Abstracts;
-using Ordering.WebApi.Extensions;
 using Ordering.WebApi.Models;
 
 namespace Ordering.WebApi.Commands.Concretes
@@ -14,15 +15,11 @@ namespace Ordering.WebApi.Commands.Concretes
         [DataMember] private readonly IList<OrderItemDto> _orderItems;
         [DataMember] public string UserId { get; private set; }
         [DataMember] public IEnumerable<OrderItemDto> OrderItems => _orderItems;
-        public string Street { get; set; }
-        [DataMember]
-        public string City { get; set; }
-        [DataMember]
-        public string State { get; set; }
-        [DataMember]
-        public string Country { get; set; }
-        [DataMember]
-        public string ZipCode { get; set; }
+        [DataMember] public string Street { get; set; }
+        [DataMember] public string City { get; set; }
+        [DataMember] public string State { get; set; }
+        [DataMember] public string Country { get; set; }
+        [DataMember] public string ZipCode { get; set; }
 
         public CreateOrderCommand()
         {
@@ -49,14 +46,5 @@ namespace Ordering.WebApi.Commands.Concretes
             Country = country;
             ZipCode = zipcode;
         }
-    }
-
-    public class OrderItemDto
-    {
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
-        public decimal Price { get; set; }
-        public int NumberOfItems { get; set; }
-        public string ImageUri { get; set;  }
     }
 }

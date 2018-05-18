@@ -1,7 +1,11 @@
 ﻿using System.Reflection;
 using Autofac;
+using BizSoft.EventBus.Abstracts;
 using BizSoft.Ordering.Core.SeedWork.Abstracts;
+using BizSoft.Ordering.EntityFrameworkCore.Idempotency;
 using BizSoft.Ordering.EntityFrameworkCore.Repositories;
+using BizSoft.Ordering.WebApi.Queries.Abstracts;
+using BizSoft.Ordering.WebApi.Queries.Concretes;
 using Ordering.WebApi.Commands.Concretes;
 
 namespace BizSoft.Ordering.WebApi.Modules
@@ -22,9 +26,18 @@ namespace BizSoft.Ordering.WebApi.Modules
 
         protected override void Load( ContainerBuilder builder )
         {
-            builder.RegisterType<OrderRepository>()
-                .As<IOrderRepository>()
-                .InstancePerLifetimeScope();
+            builder.Register( c => new OrderQueries( QueriesConnectionString ) ).As<IOrderQueries>().InstancePerLifetimeScope();
+
+            builder.RegisterType<BuyerRepository>().As<IBuyerRepository>().InstancePerLifetimeScope();
+
+            builder.RegisterType<OrderRepository>().As<IOrderRepository>().InstancePerLifetimeScope();
+
+            // Asserting only one command type handled no matter how many times it is sent
+            builder.RegisterType<RequestManager>().As<IRequestManager>().InstancePerLifetimeScope();
+
+            // This is required for consistency between different data stores
+            // by broadcasting events after a command has been successfully executed.
+            builder.RegisterAssemblyTypes(typeof(CreateOrderCommandHandler).GetTypeInfo().Assembly).AsClosedTypesOf(typeof(IIntegrationEventHandler<>));
         }
     }
 }

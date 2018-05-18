@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using BizSoft.Ordering.Core.AggregateEntities.Buyer;
 using BizSoft.Ordering.Core.Entities.Order;
 using BizSoft.Ordering.Core.Entities.OrderItem;
+using BizSoft.Ordering.Core.Entities.OrderStatus;
 using BizSoft.Ordering.Core.SeedWork.Abstracts;
 using BizSoft.Ordering.EntityFrameworkCore.Configurations;
 using BizSoft.Ordering.EntityFrameworkCore.Extensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 
 namespace BizSoft.Ordering.EntityFrameworkCore
 {
@@ -20,6 +21,8 @@ namespace BizSoft.Ordering.EntityFrameworkCore
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Buyer> Buyers { get; set; }
+        public DbSet<OrderStatus> OrderStatus { get; set; }
 
         public OrderingDbContext(DbContextOptions<OrderingDbContext> dbContextOptions, IMediator mediator)
             : base(dbContextOptions)
