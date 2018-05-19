@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using BizSoft.Common.Extensions;
 using BizSoft.Ordering.Core.Entities.OrderStatus;
 using BizSoft.Ordering.EntityFrameworkCore;
-using BizSoft.Ordering.WebApi;
-using BizSoft.Ordering.WebApi.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -38,8 +36,7 @@ namespace BizSoft.Ordering.WebApi.Infrastructure
 
                     if (!context.OrderStatus.Any())
                     {
-                        context.OrderStatus.AddRange( useCustomizationData
-                                                ? GetOrderStatusFromFile( contentRootPath, logger )
+                        context.OrderStatus.AddRange( useCustomizationData ? GetOrderStatusFromFile( contentRootPath, logger )
                                                 : GetPredefinedOrderStatus() );
                     }
 
@@ -52,7 +49,7 @@ namespace BizSoft.Ordering.WebApi.Infrastructure
         {
             string csvFileOrderStatus = Path.Combine( contentRootPath, "Setup", "OrderStatus.csv" );
 
-            if (!File.Exists( csvFileOrderStatus ))
+            if (File.Exists( csvFileOrderStatus ) == false)
             {
                 return GetPredefinedOrderStatus();
             }
@@ -60,11 +57,13 @@ namespace BizSoft.Ordering.WebApi.Infrastructure
             try
             {
                 string[] requiredHeaders = { "OrderStatus" };
+
                 GetHeaders( requiredHeaders, csvFileOrderStatus );
             }
             catch (Exception ex)
             {
                 log.LogError( ex.Message );
+
                 return GetPredefinedOrderStatus();
             }
 
@@ -79,11 +78,8 @@ namespace BizSoft.Ordering.WebApi.Infrastructure
 
         private OrderStatus CreateOrderStatus( string value, ref int id )
         {
-            if (string.IsNullOrWhiteSpace( value ))
-            {
-                throw new Exception( "Orderstatus is null or empty" );
-            }
-
+            if (string.IsNullOrWhiteSpace( value )) throw new Exception( "Orderstatus is null or empty" );
+            
             return new OrderStatus( id++, value.Trim( '"' ).Trim().ToLowerInvariant() );
         }
 
@@ -104,22 +100,16 @@ namespace BizSoft.Ordering.WebApi.Infrastructure
         {
             string[] csvheaders = File.ReadLines( csvfile ).First().ToLowerInvariant().Split( ',' );
 
-            if (csvheaders.Count() != requiredHeaders.Count())
-            {
+            if (csvheaders.Count() != requiredHeaders.Count()) 
                 throw new Exception( $"requiredHeader count '{ requiredHeaders.Count()}' is different then read header '{csvheaders.Count()}'" );
-            }
-
+            
             foreach (var requiredHeader in requiredHeaders)
             {
-                if (!csvheaders.Contains( requiredHeader ))
-                {
-                    throw new Exception( $"does not contain required header '{requiredHeader}'" );
-                }
+                if (csvheaders.Contains( requiredHeader ) == false)  throw new Exception( $"does not contain required header '{requiredHeader}'" );
             }
 
             return csvheaders;
         }
-
 
         private Policy CreatePolicy( ILogger<OrderingDbContextSeed> logger, string prefix, int retries = 3 )
         {

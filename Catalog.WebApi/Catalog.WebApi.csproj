@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>e78db6c8-24cb-4101-82f7-5527c0066701</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Setup\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BizSoft.Common\BizSoft.Common.csproj" />
+    <ProjectReference Include="..\..\BizSoft.IntegrationEventLogEf\BizSoft.IntegrationEventLogEf.csproj" />
+    <ProjectReference Include="..\..\BizSoft.WebHost.Customization\BizSoft.WebHost.Customization.csproj" />
+    <ProjectReference Include="..\BizSoft.EventBusRabbitMq\BizSoft.EventBusRabbitMq.csproj" />
+    <ProjectReference Include="..\BizSoft.EventBusServiceBus\BizSoft.EventBusServiceBus.csproj" />
+  </ItemGroup>
+
+</Project>

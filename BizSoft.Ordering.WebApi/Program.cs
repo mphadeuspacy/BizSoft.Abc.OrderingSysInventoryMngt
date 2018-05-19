@@ -26,7 +26,7 @@ namespace BizSoft.Ordering.WebApi
 
                     new OrderingDbContextSeed().SeedAsync( context, env, settings, logger ).Wait();
                 } )
-                .MigrateDbContext<IntegrationEventLogContext>( ( _, __ ) => { } ).Run();
+                .MigrateDbContext<IntegrationEventLogDbContext>( ( _, __ ) => { } ).Run();
         }
 
         public static IWebHost BuildWebHost( string[] args ) =>

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Setup\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -27,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BizSoft.Common\BizSoft.Common.csproj" />
     <ProjectReference Include="..\..\BizSoft.EventBus\BizSoft.EventBus.csproj" />
     <ProjectReference Include="..\..\BizSoft.IntegrationEventLogEf\BizSoft.IntegrationEventLogEf.csproj" />
     <ProjectReference Include="..\..\BizSoft.WebHost.Customization\BizSoft.WebHost.Customization.csproj" />
